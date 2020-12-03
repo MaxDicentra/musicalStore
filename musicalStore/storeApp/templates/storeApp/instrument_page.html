@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title> Instrument </title>
+{% endblock head%}
+
+{% block content %}
+<p>{{ instrument.name }}</p>
+<textarea> {{ instrument.description }}</textarea>
+<a href="{% url 'catalog' %}"></a>
+{% endblock%}

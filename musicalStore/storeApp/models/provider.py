@@ -1,8 +1,11 @@
 from django.db import models
-from storeApp.models.address import Address
+from .address import Address
 
 
 class Provider(models.Model):
+
+    class Meta:
+        db_table = 'provider'
 
     name = models.CharField(max_length=45)
     email = models.EmailField(max_length=30)

@@ -13,6 +13,9 @@ class Address(models.Model):
         LAN = 'lane'
         AVN = 'avenue'
 
+    class Meta:
+        db_table = 'address'
+
     country = models.CharField(max_length=45)
     city_type = models.CharField(max_length=10, choices=CityType.choices)
     city = models.CharField(max_length=45)

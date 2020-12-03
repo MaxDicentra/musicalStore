@@ -1,10 +1,13 @@
 from django.db import models
-from storeApp.models.producer import Producer
-from storeApp.models.provider import Provider
-from storeApp.models.type import Type
+from .producer import Producer
+from .provider import Provider
+from .type import Type
 
 
 class Instrument(models.Model):
+
+    class Meta:
+        db_table = 'instrument'
 
     name = models.CharField(max_length=45)
     description = models.TextField(max_length=250)

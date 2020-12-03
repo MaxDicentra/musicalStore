@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title> Catalog </title>
+{% endblock head%}
+
+{% block content %}
+    {% for instrument in instruments_list%}
+        <p>CATALOG</p>
+
+        <ul>
+        <li><a href="{% url 'instrument' instrument.id %}">{{ instrument.name }}</a></li>
+        </ul>
+    {% endfor %}
+{% endblock%}

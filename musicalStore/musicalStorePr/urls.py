@@ -15,7 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import include
+from storeApp.views import show_instrument, registration, \
+     profile, show_catalog, confirm_email, registration_submit
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', show_catalog, name='catalog'),
+    path('profile/', profile, name='profile'),
+    path('instrument/<int:instrument_id>', show_instrument, name='instrument'),
+    path('catalog/', show_catalog, name='catalog'),
+    # path('login_submit', log_in_submit, name='log_in_submit'),
+    path('registration', registration, name='registration'),
+    path('registration_submit', registration_submit, name='registration_submit'),
+    path('confirm_email', confirm_email, name='confirm_email'),
 ]
+
+urlpatterns += [path('accounts/', include('django.contrib.auth.urls')), ]

@@ -1,8 +1,11 @@
 from django.db import models
-from storeApp.models.address import Address
+from .address import Address
 
 
 class Producer(models.Model):
+
+    class Meta:
+        db_table = 'producer'
 
     name = models.CharField(max_length=45)
     email = models.EmailField(max_length=30)
