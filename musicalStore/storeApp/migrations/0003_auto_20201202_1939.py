@@ -11,34 +11,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='storage',
-            name='description',
-        ),
-        migrations.RemoveField(
-            model_name='storage',
-            name='id_producer',
-        ),
-        migrations.RemoveField(
-            model_name='storage',
-            name='id_type',
-        ),
-        migrations.RemoveField(
-            model_name='storage',
-            name='name',
-        ),
-        migrations.RemoveField(
-            model_name='storage',
-            name='price',
-        ),
-        migrations.AddField(
-            model_name='storage',
-            name='amount',
-            field=models.IntegerField(default=0),
-        ),
-        migrations.AlterField(
-            model_name='storage',
-            name='id_provider',
-            field=models.ForeignKey(db_column='id_instrument', on_delete=django.db.models.deletion.RESTRICT, to='storeApp.instrument'),
-        ),
+
     ]
