@@ -20,14 +20,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7d6fdc3-f3c8-4c3c-9967-e9825f6690ce" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/musicalStore/storeApp/models/cart.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/musicalStore/storeApp/models/ordered_instr.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/musicalStore/storeApp/templates/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/musicalStore/storeApp/templatetags/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/musicalStore/storeApp/templatetags/filters.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/musicalStore/storeApp/views/order.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/migrations/0003_auto_20201202_1939.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/migrations/0003_auto_20201202_1939.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/musicalStore/musicalStorePr/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/musicalStorePr/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/musicalStore/musicalStorePr/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/musicalStorePr/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/Controllers/DBController.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/Controllers/DBController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/Controllers/PasswordController.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/migrations/0001_initial.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/models/cart.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/models/cart.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/models/order.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/models/order.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/models/storage.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/models/storage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/templates/storeApp/catalog.html" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/templates/storeApp/catalog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/templates/storeApp/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/templates/storeApp/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/views/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/views/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/views/catalog.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/views/catalog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/views/profile.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/views/profile.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,11 +71,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\university\4_course\course_work\course_work\musicalStore\musicalStore\storeApp" />
+      <recent name="D:\university\4_course\course_work\course_work\musicalStore\musicalStore\storeApp\templates\templatetags" />
       <recent name="D:\university\4_course\course_work\course_work\musicalStore\musicalStore\storeApp\CSS" />
       <recent name="D:\university\4_course\course_work\course_work\musicalStore\musicalStore\storeApp\templates\storeApp" />
       <recent name="D:\university\4_course\course_work\course_work\musicalStore\musicalStore\storeApp\templates" />
-      <recent name="D:\university\4_course\course_work\course_work\musicalStore\musicalStore\storeApp\Controllers" />
-      <recent name="D:\university\4_course\course_work\course_work\musicalStore\musicalStore\storeApp" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -95,9 +106,13 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="101" y="169" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1606684139563" />
-    <state x="128" y="118" key="FileChooserDialogImpl" timestamp="1606687175975">
+    <state x="128" y="118" key="FileChooserDialogImpl" timestamp="1607078394838">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="128" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1606687175975" />
+    <state x="128" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1607078394838" />
+    <state x="4" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1607213157130">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="4" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1607213157130" />
   </component>
 </project>

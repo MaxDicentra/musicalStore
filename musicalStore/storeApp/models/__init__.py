@@ -6,5 +6,6 @@ from .producer import Producer
 from .order import Order
 from .storage import Storage
 from .user_connection import UserConnection
-from .ordered_instr import OrderedInstr
 from .cart import Cart
+from .ordered_instr import OrderedInstr
+

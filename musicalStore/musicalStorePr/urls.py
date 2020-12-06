@@ -16,8 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
-from storeApp.views import show_instrument, registration, \
-     profile, show_catalog, confirm_email, registration_submit
+from storeApp.views import show_instrument, registration,  CreateOrder, DeleteFromCart, \
+     profile, show_catalog, confirm_email, registration_submit, addToCart, \
+    CancelOrder, CreateOrder
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,10 +26,13 @@ urlpatterns = [
     path('profile/', profile, name='profile'),
     path('instrument/<int:instrument_id>', show_instrument, name='instrument'),
     path('catalog/', show_catalog, name='catalog'),
-    # path('login_submit', log_in_submit, name='log_in_submit'),
-    path('registration', registration, name='registration'),
-    path('registration_submit', registration_submit, name='registration_submit'),
-    path('confirm_email', confirm_email, name='confirm_email'),
+    path('registration/', registration, name='registration'),
+    path('registration_submit/', registration_submit, name='registration_submit'),
+    path('confirm_email/', confirm_email, name='confirm_email'),
+    path('add_to_cart/<int:instrument_id>/<int:user_id>', addToCart, name='to_cart'),
+    path('delete_from_cart/<int:cart_id>', DeleteFromCart, name='delete_from_cart'),
+    path('cancel_order/', CancelOrder, name='cancel_order'),
+    path('create_order/', CreateOrder, name='create_order'),
 ]
 
 urlpatterns += [path('accounts/', include('django.contrib.auth.urls')), ]

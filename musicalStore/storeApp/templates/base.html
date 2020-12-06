@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     {% block head %}
     {% endblock head%}
-    <link rel="stylesheet" href="musicalStore/storeApp/CSS/styles.css">
 </head>
 <body>
     <p>Base template</p>
-    <div class="header">
+    <div>
         <ul>
             {% if user.is_authenticated%}
                 <li> {{ user.get_username }} </li>
-                <li> <a href="{% url 'logout' %}?next={% url 'catalog' %}">LOGOUT</a></li>
+                <li><a href="{% url 'profile' %}">PROFILE</a></li>
+                <li> <a href="{% url 'logout' %}?next={{ request.path }}">LOGOUT</a></li>
             {% else %}
-                <li> <a href="{% url 'login' %}?next={% url 'profile' %}">LOGIN</a></li>
+                <li> <a href="{% url 'login' %}?next={{ request.path }}">LOGIN</a></li>
             {% endif %}
         </ul>
     </div>

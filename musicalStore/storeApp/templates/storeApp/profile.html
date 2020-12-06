@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load get_element%}
 
 {% block head %}
 <title> Profile </title>
@@ -7,5 +8,111 @@
 {% block content %}
 <p>{{ user }}</p>
 
-<a href="{% url 'catalog' %}"></a>
+<div>
+    <p>Menu/(надпись убрать потом)</p>
+    <a href="{% url 'catalog' %}">Catalog</a>
+    <a>My orders</a>
+</div>
+
+<div>
+    <form method="post" action="{% url 'profile' %}">
+        {% csrf_token %}
+        <input type="hidden" name="show_orders" value="True">
+        <button type="submit">Orders</button>
+    </form>
+    <form method="post" action="{% url 'profile' %}">
+        {% csrf_token %}
+        <input type="hidden" name="show_canceled_orders" value="True">
+        <button type="submit">Canceled orders</button>
+    </form>
+    <form method="post" action="{% url 'profile' %}">
+        {% csrf_token %}
+        <input type="hidden" name="show_cart" value="True">
+        <button type="submit">My cart</button>
+    </form>
+</div>
+
+{% if show == 1 %}
+<p>My cart</p>
+{% if empty is not True %}
+  <ul>
+      {% for instrument in user_cart %}
+      {% with cart=cart_info|get_element:forloop.counter0 %}
+    <li>
+        <form method="post" action="{% url 'delete_from_cart' cart.id %}">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.path }}">
+            <p>{{ instrument.name }}</p>
+            <textarea>{{ instrument.description }}</textarea>
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+      {% endwith %}
+    {% endfor %}
+  </ul>
+    <form method="post" action="{% url 'create_order' %}">
+        {% csrf_token %}
+                    {% csrf_token %}
+
+        <input type="hidden" name="next" value="{{ request.path }}">
+        <button type="submit">Order</button>
+    </form>
+{% else %}
+<p>Cart is empty! </p>
+{% endif %}
+{% endif%}
+
+{% if show == 2%}
+{% if orders %}
+<ul>
+    {% for full_order in orders %}
+    <li>
+        <form method="post" action="{% url 'cancel_order' %}">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.path }}">
+            <input type="hidden" name="order_id" value="{{ full_order.order.id }}">
+
+            {% for instrument in full_order.instruments %}
+                <div>
+                    <p>{{ instrument.id_instrument.name }}</p>
+                    <p>{{ instrument.id_instrument.price }}</p>
+                    <textarea>{{ instrument.id_instrument.description }}</textarea>
+                </div>
+                {% endfor %}
+            <p>{{ full_order.order.date }}</p>
+            <button type="submit">Cancel</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+    <p> No active orders </p>
+{% endif%}
+{% endif %}
+
+{% if show == 3%}
+{% if canceled_orders %}
+<ul>
+    {% for full_order in canceled_orders %}
+    <li>
+        {% for instrument in full_order.instruments %}
+        <div>
+            <p>{{ instrument.id_instrument.name }}</p>
+            <p>{{ instrument.id_instrument.price }}</p>
+            <textarea>{{ instrument.id_instrument.description }}</textarea>
+        </div>
+        {% endfor %}
+        <p>{{ full_order.order.date }}</p>
+        {% if full_order.order.is_canceled %}
+            <p>Canceled</p>
+        {% else %}
+            <p>Finished</p>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+    <p> No finished orders </p>
+{% endif %}
+{% endif %}
 {% endblock%}

@@ -97,12 +97,8 @@ class Migration(migrations.Migration):
             name='Storage',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=45)),
-                ('description', models.TextField(max_length=250)),
-                ('price', models.IntegerField()),
-                ('id_producer', models.ForeignKey(db_column='id_producer', on_delete=django.db.models.deletion.RESTRICT, to='storeApp.producer')),
-                ('id_provider', models.ForeignKey(db_column='id_provider', on_delete=django.db.models.deletion.RESTRICT, to='storeApp.provider')),
-                ('id_type', models.ForeignKey(db_column='id_type', on_delete=django.db.models.deletion.RESTRICT, to='storeApp.type')),
+                ('id_instrument', models.ForeignKey(db_column='id_instrument', default=1, on_delete=django.db.models.deletion.RESTRICT, to='storeApp.instrument')),
+                ('amount', models.IntegerField(default=0)),
             ],
             options={
                 'db_table': 'storage',

@@ -64,6 +64,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries':{
+                'get_element': 'storeApp.templatetags.filters',
+            }
         },
     },
 ]
@@ -103,8 +106,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-# AUTH_USER_MODEL = 'storeApp.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/

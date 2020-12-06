@@ -7,9 +7,18 @@
 {% block content %}
     {% for instrument in instruments_list%}
         <p>CATALOG</p>
-
         <ul>
-        <li><a href="{% url 'instrument' instrument.id %}">{{ instrument.name }}</a></li>
+        <li>
+            <a href="{% url 'instrument' instrument.id %}">{{ instrument.name }}</a>
+            {% if user is not None%}
+            <form method="post" action="{% url 'to_cart' instrument.id user.id %}">
+                {% csrf_token %}
+                {{ form }}
+                <input type="hidden" name="next" value="{% url 'catalog' %}">
+                <button type="submit">To cart</button>
+            </form>
+            {% endif %}
+        </li>
         </ul>
     {% endfor %}
 {% endblock%}

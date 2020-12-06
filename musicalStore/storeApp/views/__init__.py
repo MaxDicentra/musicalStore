@@ -1,5 +1,5 @@
-from .profile import profile
+from .profile import profile, DeleteFromCart
 from .instrument import show_instrument
-from .catalog import show_catalog
-# from .log_in import log_in, log_in_submit
+from .catalog import show_catalog, addToCart
 from .registration import registration, confirm_email, registration_submit
+from .order import CreateOrder, CancelOrder
