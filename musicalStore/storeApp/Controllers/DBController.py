@@ -1,6 +1,5 @@
 import datetime
 
-from django.conf import settings
 from storeApp.models import Address, Instrument, Order, Producer, Provider,\
     Storage, Type, UserConnection, Cart, OrderedInstr
 from django.contrib.auth.models import User
@@ -28,6 +27,15 @@ class DBController(object):
         CONF_PASSWORD = 'conf_password'
         EMAIL = 'email'
         ADDRESS = 'address'
+        COUNTRY = 'country'
+        CITY_TYPE = 'city_type'
+        CITY = 'city'
+        STREET = 'street'
+        FLAT = 'flat'
+        GATE = 'gate'
+        HOUSE = 'house'
+        STREET_TYPE = 'street_type'
+        INDEX = 'index'
 
     __instance = None
 
@@ -42,7 +50,7 @@ class DBController(object):
                                         last_name=user_data[self.UserKeys.LAST_NAME],
                                         email=user_data[self.UserKeys.EMAIL],
                                         password=user_data[self.UserKeys.PASSWORD])
-        address = self.CreateAddress()
+        address = self.CreateAddress(user_data)
         user.save()
         address.save()
         user_profile = UserConnection(phone=user_data[self.UserKeys.PHONE],
@@ -65,9 +73,18 @@ class DBController(object):
         user.save()
         user_inf.save()
 
-    def CreateAddress(self):
-        id = 1
-        return Address.objects.get(pk=id)
+    def CreateAddress(self, user_data):
+        address = Address(country=user_data[self.UserKeys.COUNTRY],
+                          city_type=Address.CityType.CIT,
+                          city=user_data[self.UserKeys.CITY],
+                          street_type=Address.StreetType.STR,
+                          street=user_data[self.UserKeys.STREET],
+                          house=user_data[self.UserKeys.HOUSE],
+                          gate=user_data[self.UserKeys.GATE],
+                          flat=user_data[self.UserKeys.FLAT],
+                          index=user_data[self.UserKeys.INDEX])
+        address.save()
+        return address
 
     def EditAddress(self, address_data, user_id):
         user = User.objects.get(pk=user_id)
@@ -159,12 +176,13 @@ class DBController(object):
 
         if producer_country:
             if producer_country.lower() != 'select':
-                producers = Producer.objects.all().filter(id_address__country=producer_country)
                 # pdb.set_trace()
+
+                producers = Producer.objects.all().filter(id_address__country=producer_country)
                 instruments = instruments.filter(id_producer__in=producers)
 
-        if high_price:
-            instruments = instruments.filter(price__lte=high_price, price__gte=low_price)
+        # if high_price:
+        #     instruments = instruments.filter(price__lte=high_price, price__gte=low_price)
 
         if name:
             instruments = instruments.filter(name__contains='name')

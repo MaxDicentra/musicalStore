@@ -5,7 +5,19 @@
 {% endblock head%}
 
 {% block content %}
-<p>{{ instrument.name }}</p>
-<textarea> {{ instrument.description }}</textarea>
-<a href="{% url 'catalog' %}"></a>
+<div class="list_form">
+    <h1>{{ instrument.name }}</h1><br>
+    <img src="{{ instrument.image.url }}" height='60%' width="60%"/>
+    <p class="simple_text">PRICE: {{ instrument.price }}$</p>
+    <label class="simple_text" for="descr3">DESCRIPTION:</label>
+    <p class="description" id="descr3">{{ instrument.description }}</p>
+    {% if user.is_authenticated %}
+    <form method="post" action="{% url 'to_cart' instrument.id user.id %}">
+        {% csrf_token %}
+        {{ form }}
+        <input type="hidden" name="next" value="{% url 'catalog' %}">
+        <button class="small_button" type="submit">To cart</button>
+    </form>
+    {% endif %}
+</div>
 {% endblock%}

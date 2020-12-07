@@ -15,29 +15,18 @@
   {% csrf_token %}
   <div class="tab-content">
     <div class="field-wrap">
-      {{ form.username.label_tag }}
+      <p class="label_">Username</p>
       {{ form.username }}
     </div>
     <div class="field-wrap">
-      {{ form.password.label_tag }}
+      <p class="label_">Password</p>
       {{ form.password }}
     </div>
   </div>
-  <p class="forgot"><a href="{% url 'password_reset' %}">Lost password?</a></p>
-  <p class="forgot"><a href="{% url 'registration' %}">Don't have account yet?</a></p>
+  <p class="forgot"><a class="a_style" href="{% url 'password_reset' %}">Lost password?</a></p>
+  <p class="forgot"><a class="a_style" href="{% url 'registration' %}">Don't have account yet?</a></p>
 
   <input type="hidden" name="next" value="{{ next }}" />
   <button type="submit" class="button button-block">Log In</button>
-<!--  <table>-->
-<!--    <tr>-->
-<!--      <td>{{ form.username.label_tag }}</td>-->
-<!--      <td>{{ form.username }}</td>-->
-<!--    </tr>-->
-
-<!--    <tr>-->
-<!--      <td>{{ form.password.label_tag }}</td>-->
-<!--      <td>{{ form.password }}</td>-->
-<!--    </tr>-->
-<!--  </table>-->
 </form>
 {% endblock %}

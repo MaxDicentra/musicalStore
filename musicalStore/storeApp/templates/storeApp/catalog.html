@@ -6,20 +6,46 @@
 
 {% block content %}
 {% if show_types == True %}
+<!--<div class="types_box_container">-->
+<!--    <div class="types_box" id="style-middle2">-->
+<!--        {% for type in types %}-->
+<!--            <form class=form method="post" action="{% url 'catalog' %}">-->
+<!--            {% csrf_token %}-->
+<!--            <input type="hidden" name="show_types" value="False">-->
+<!--            <input type="hidden" name="{{ type.inst_type }}" value="True">-->
+<!--            <button class="button button-block" type="submit">{{ type.inst_type }}</button>-->
+<!--            </form>-->
+<!--        {% endfor %}-->
+<!--    </div>-->
+<!--</div>-->
+ <div class="catalog_container_mod">
+    <div></div>
+    <div class="list_box_container" id="style-middle2">
     {% for type in types %}
-    <form method="post" action="{% url 'catalog' %}">
-        {% csrf_token %}
-        <input type="hidden" name="show_types" value="False">
-        <input type="hidden" name="{{ type.inst_type }}" value="True">
-        <button type="submit">{{ type.inst_type }}</button>
-    </form>
+        <div>
+            <form class=form method="post" action="{% url 'catalog' %}">
+            {% csrf_token %}
+            <input type="hidden" name="show_types" value="False">
+            <input type="hidden" name="{{ type.inst_type }}" value="True">
+            <button class="button button-block" type="submit">{{ type.inst_type }}</button>
+            </form>
+        </div><br><br>
     {% endfor %}
+    </div>
+ </div>
+
 {% else %}
-    <p>CATALOG</p>
-    <p>{{ type.inst_type }}</p>
-    <form method="post" action="{% url 'catalog' %}">
+ <div class="catalog_container">
+    <div class="catalog_bar" >
+        <div>
+            <p class="basic_header_large">CATALOG</p>
+            <p><a class="basic_header_large" href="{% url 'catalog' %}">{{ type.inst_type }}</a></p>
+        </div>
+        <div>
+            <form method="post" action="{% url 'catalog' %}">
         {% csrf_token %}
-        <select name="countries_s">
+                <label class="basic_header" for="country">Produce country:</label>
+        <select name="countries_s" id="country">
             {% if producer_country == 'select' %}
                 <option selected value="select">Select</option>
             {% else %}
@@ -32,8 +58,9 @@
                 <option value="{{ country }}">{{ country }}</option>
             {% endif %}
             {% endfor %}
-        </select>
-        <select name="producers_s">
+        </select><br>
+                <label class="basic_header" for="producer">Producer:</label>
+        <select name="producers_s" id="producer">
             {% if producer == "select" %}
                 <option selected value="select">Select</option>
             {% else %}
@@ -46,8 +73,9 @@
                 <option value="{{ producer_ }}">{{ producer_ }}</option>
             {% endif %}
             {% endfor %}
-        </select>
-        <select name="sort_by">
+        </select><br>
+                <label class="basic_header" for="sort_by">Sort:</label>
+        <select name="sort_by" id="sort_by">
             {% if sort_by == "select" %}
                 <option selected value="select">Select</option>
             {% else %}
@@ -60,35 +88,48 @@
                 <option value="{{ sort }}">{{ sort }}</option>
             {% endif %}
             {% endfor %}
-        </select>
-        <label for="ll">Set lowest limit for price</label>
-        <input type="range" id="ll" name="low_limit" min="{{ lowest_price }} max = {{ highest_price }}" value="{{ low_limit }}">
-        <label for="hl">Set highest limit for price</label>
-        <input type="range" id="hl" name="high_limit" min="{{ lowest_price }} max = {{ highest_price }}" value="{{ high_limit }}">
+        </select><br><br>
+<!--        <label class="basic_header" for="ll">Set lowest limit for price:</label>-->
+<!--        <div class="slider_container">-->
+<!--            <input class="slider"  type="range" id="ll" name="low_limit" min="{{ lowest_price }} max = {{ highest_price }}" value="{{ low_limit }}">-->
+<!--        </div>-->
+<!--                <label class="basic_header" for="hl">Set highest limit for price:</label>-->
+<!--        <div class="slider_container">-->
+<!--            <input class="slider" type="range" id="hl" name="high_limit" min="{{ lowest_price }} max = {{ highest_price }}" value="{{ high_limit }}">-->
+<!--        </div>-->
         <input type="hidden" name="{{ type.inst_type }}" value="True">
         <input type="hidden" name="show_types" value="False">
-        <input type="hidden" name="filter" value="True">
-        <button type="submit">Search</button>
+        <input type="hidden" name="filter" value="True"><br>
+        <button class="small_button" type="submit">Search</button>
     </form>
-    {% if instruments_list %}
+        </div>
+    </div>
+     {% if instruments_list %}
+<div class="list_box_container" id="style-middle">
     {% for instrument in instruments_list%}
-        <ul>
-        <li>
-            <a href="{% url 'instrument' instrument.id %}">{{ instrument.name }}</a>
+        <div>
+            <div class="list_form">
+            <a class="basic_header" href="{% url 'instrument' instrument.id %}">{{ instrument.name }}</a><br>
+                <img src="{{ instrument.image.url }}" height='30%' width="30%"/>
+                <p class="simple_text">PRICE: {{ instrument.price }}$</p>
+                <p class="simple_text">{{ instrument.id_producer.name }}</p>
+                <label class="simple_text" for="descr3">DESCRIPTION:</label>
+                <p class="description" id="descr3">{{ instrument.description }}</p>
             {% if user.is_authenticated %}
             <form method="post" action="{% url 'to_cart' instrument.id user.id %}">
                 {% csrf_token %}
                 {{ form }}
                 <input type="hidden" name="next" value="{% url 'catalog' %}">
-                <button type="submit">To cart</button>
+                <button class="small_button" type="submit">To cart</button>
             </form>
             {% endif %}
-        </li>
-        </ul>
+            </div>
+        </div><br><br>
     {% endfor %}
     {% else %}
-        <p>No instruments found </p>
+        <p class="basic_header_large">No instruments found </p>
     {% endif %}
-<a href="{% url 'catalog' %}">Types</a>
+</div>
+ </div>
 {% endif %}
 {% endblock%}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title> Regiastration </title>
+{% endblock head%}
+
+{% block content %}
+{% if error_message %}
+    <p> {{ error_message }} </p>
+{% endif %}
+<div class="container">
+        <div><br><h1>Create Account</h1></div>
+        <div class="list_container" id="style-middle">
+        <form class="form" action="{% url 'registration_submit' %}" method="post" name="registration_form">
+                {% csrf_token %}
+                <h1>User info:</h1>
+                <input class="input_reg" type="text" name="{{keys.USERNAME}}" required size="45" placeholder="Login"><br>
+                <input class="input_reg" type="text" name="{{keys.FIRST_NAME}}" required size="45" placeholder="First name"><br>
+                <input class="input_reg" type="text" name="{{keys.LAST_NAME}}" required size="45" placeholder="Last name"><br>
+                <input class="input_reg" type="text" name="{{keys.PHONE}}" required size="20" placeholder="Phone"><br>
+                <input class="input_reg" type="text" name="{{keys.EMAIL}}" placeholder="E-mail" required size="30"><br>
+                <input class="input_reg" type="password" name="{{keys.PASSWORD}}" required placeholder="Password" size="40"><br>
+                <input class="input_reg" type="password" name="{{keys.CONF_PASSWORD}}" required placeholder="Confirm password" size="40"><br>
+                <h1>Address:</h1>
+                <input class="input_reg" type="text" name="{{keys.COUNTRY}}" required size="45" placeholder="Country"><br>
+                <input class="input_reg" type="text" name="{{keys.CITY}}" required size="45" placeholder="City"><br>
+                <input class="input_reg" type="text" name="{{keys.STREET}}" required size="45" placeholder="Street"><br>
+                <input class="input_reg" type="text" name="{{keys.HOUSE}}" required size="10" placeholder="House"><br>
+                <input class="input_reg" type="text" name="{{keys.GATE}}" placeholder="Gate" required size="5"><br>
+                <input class="input_reg" type="text" name="{{keys.FLAT}}" placeholder="Flat" required size="10"><br>
+                <input class="input_reg" type="text" name="{{keys.INDEX}}" placeholder="Index" required size="10"><br>
+                <p><input class="button button-block" type="submit" value="Create"></p>
+                <br><br>
+        </form>
+</div>
+</div>
+{% endblock%}

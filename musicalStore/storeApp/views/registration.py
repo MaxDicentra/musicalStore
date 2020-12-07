@@ -27,7 +27,7 @@ def registration_submit(request):
         })
     else:
         db.CreateUser(request.POST)
-        return HttpResponseRedirect(reverse('confirm_email'))
+        return HttpResponseRedirect(reverse('login'))
 
 
 def confirm_email(request):

@@ -22,7 +22,6 @@ def show_catalog(request):
         if request.POST.get('filter', False):
 
             sort_by = request.POST.get('sort_by', 'select')
-            # pdb.set_trace()
             producer_country = request.POST.get('countries_s', 'select')
             producer = request.POST.get('producers_s', 'select')
             low_price, high_price = GetPriceLimits(request, highest_price, lowest_price)
