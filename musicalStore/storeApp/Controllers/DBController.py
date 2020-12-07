@@ -6,6 +6,7 @@ from storeApp.models import Address, Instrument, Order, Producer, Provider,\
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 import pdb
+from itertools import chain
 
 
 class FullOrder:
@@ -131,6 +132,7 @@ class DBController(object):
             new_ord = OrderedInstr(id_instrument=cart.id_instrument, id_order=order)
             new_ord.save()
             cart.delete()
+    # ввод данных карты
 
     def CancelOrder(self, order_id):
         order = Order.objects.get(pk=order_id)
@@ -145,5 +147,58 @@ class DBController(object):
         order.is_active = False
         order.save()
 
-    def GetInstruments(self):
-        return Instrument.objects.all()
+    def GetInstruments(self, type, name, producer_country, producer, low_price, high_price, sort_by):
+
+        instruments = Instrument.objects.all().filter(id_type=type.id)
+
+        # pdb.set_trace()
+        if producer:  # +++
+            if producer.lower() != 'select':
+                producer_obj = Producer.objects.get(name=producer)
+                instruments = instruments.filter(id_producer=producer_obj)
+
+        if producer_country:
+            if producer_country.lower() != 'select':
+                producers = Producer.objects.all().filter(id_address__country=producer_country)
+                # pdb.set_trace()
+                instruments = instruments.filter(id_producer__in=producers)
+
+        if high_price:
+            instruments = instruments.filter(price__lte=high_price, price__gte=low_price)
+
+        if name:
+            instruments = instruments.filter(name__contains='name')
+
+        if sort_by:
+            if sort_by != 'select':
+                if sort_by == 'high to low':
+                    instruments = instruments.order_by('-price')
+                elif sort_by == 'low to high':
+                    instruments = instruments.order_by('price')
+
+        return instruments
+
+    def GetTypes(self):
+        return Type.objects.all()
+
+    def GetProdAndContr(self):
+        producers_obj = Producer.objects.all()
+
+        countries = []
+        producers = []
+        for prod in producers_obj:
+            countries.append(prod.id_address.country)
+            producers.append(prod.name)
+
+        return producers, countries
+
+    def GetProducer(self, name):
+        return Producer.objects.get(name=name)
+
+    def GetPrices(self, type):
+        instruments = Instrument.objects.all().filter(id_type=type.id)
+        instruments_max = instruments.order_by('price')[0]
+        instruments_min = instruments.order_by('-price')[0]
+
+        return instruments_max.price, instruments_min.price
+

@@ -1,5 +1,5 @@
 """
-ASGI config for musicalStorePr project.
+ASGI config for musicalStore project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'musicalStorePr.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'musicalStore.settings')
 
 application = get_asgi_application()

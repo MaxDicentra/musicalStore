@@ -1,4 +1,4 @@
-"""musicalStorePr URL Configuration
+"""musicalStore URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
@@ -14,11 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path
 from django.conf.urls import include
 from storeApp.views import show_instrument, registration,  CreateOrder, DeleteFromCart, \
      profile, show_catalog, confirm_email, registration_submit, addToCart, \
-    CancelOrder, CreateOrder
+    CancelOrder, CreateOrder, SearchWithFilters, SearchByName, Search
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +27,9 @@ urlpatterns = [
     path('profile/', profile, name='profile'),
     path('instrument/<int:instrument_id>', show_instrument, name='instrument'),
     path('catalog/', show_catalog, name='catalog'),
+    path('search/', Search, name='search'),
+    path('search_with_filters/', SearchWithFilters, name='search_with_filters'),
+    path('search_by_name/', SearchByName, name='search_by_name'),
     path('registration/', registration, name='registration'),
     path('registration_submit/', registration_submit, name='registration_submit'),
     path('confirm_email/', confirm_email, name='confirm_email'),
@@ -36,3 +40,4 @@ urlpatterns = [
 ]
 
 urlpatterns += [path('accounts/', include('django.contrib.auth.urls')), ]
+urlpatterns += staticfiles_urlpatterns()

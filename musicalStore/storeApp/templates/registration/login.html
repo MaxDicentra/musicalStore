@@ -7,37 +7,37 @@
 {% block content %}
 
 {% if form.errors %}
-  <p>Your username and password didn't match. Please try again.</p>
+  <p class="error_message">Your username and password didn't match. Please try again.</p>
 {% endif %}
 
-{% if next %}
-  {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-  {% else %}
-    <p>Please login to see this page.</p>
-  {% endif %}
-{% endif %}
-
-<form method="post" action="{% url 'login' %}">
+<h1>Welcome Back!</h1>
+<form class="form" method="post" action="{% url 'login' %}">
   {% csrf_token %}
-  <table>
+  <div class="tab-content">
+    <div class="field-wrap">
+      {{ form.username.label_tag }}
+      {{ form.username }}
+    </div>
+    <div class="field-wrap">
+      {{ form.password.label_tag }}
+      {{ form.password }}
+    </div>
+  </div>
+  <p class="forgot"><a href="{% url 'password_reset' %}">Lost password?</a></p>
+  <p class="forgot"><a href="{% url 'registration' %}">Don't have account yet?</a></p>
 
-    <tr>
-      <td>{{ form.username.label_tag }}</td>
-      <td>{{ form.username }}</td>
-    </tr>
-
-    <tr>
-      <td>{{ form.password.label_tag }}</td>
-      <td>{{ form.password }}</td>
-    </tr>
-  </table>
-
-  <input type="submit" value="login" />
   <input type="hidden" name="next" value="{{ next }}" />
+  <button type="submit" class="button button-block">Log In</button>
+<!--  <table>-->
+<!--    <tr>-->
+<!--      <td>{{ form.username.label_tag }}</td>-->
+<!--      <td>{{ form.username }}</td>-->
+<!--    </tr>-->
+
+<!--    <tr>-->
+<!--      <td>{{ form.password.label_tag }}</td>-->
+<!--      <td>{{ form.password }}</td>-->
+<!--    </tr>-->
+<!--  </table>-->
 </form>
-
-<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
-
 {% endblock %}

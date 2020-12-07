@@ -6,113 +6,110 @@
 {% endblock head%}
 
 {% block content %}
-<p>{{ user }}</p>
-
-<div>
-    <p>Menu/(надпись убрать потом)</p>
-    <a href="{% url 'catalog' %}">Catalog</a>
-    <a>My orders</a>
-</div>
-
-<div>
+<div class="profile_container" id="style_middle">
+<div class="profile_bar">
     <form method="post" action="{% url 'profile' %}">
         {% csrf_token %}
         <input type="hidden" name="show_orders" value="True">
-        <button type="submit">Orders</button>
+        <button class="profile_bar_button" type="submit">Orders</button>
     </form>
     <form method="post" action="{% url 'profile' %}">
         {% csrf_token %}
         <input type="hidden" name="show_canceled_orders" value="True">
-        <button type="submit">Canceled orders</button>
+        <button class="profile_bar_button"  type="submit">Finished orders</button>
     </form>
     <form method="post" action="{% url 'profile' %}">
         {% csrf_token %}
         <input type="hidden" name="show_cart" value="True">
-        <button type="submit">My cart</button>
+        <button class="profile_bar_button"  type="submit">My cart</button>
     </form>
 </div>
-
+<div class="list_box_container" id="style-middle">
 {% if show == 1 %}
-<p>My cart</p>
 {% if empty is not True %}
-  <ul>
-      {% for instrument in user_cart %}
-      {% with cart=cart_info|get_element:forloop.counter0 %}
-    <li>
-        <form method="post" action="{% url 'delete_from_cart' cart.id %}">
+    <div>
+        <h1 class="basic_header">My cart</h1>
+        <div class="cart">
+            {% for instrument in user_cart %}
+            {% with cart=cart_info|get_element:forloop.counter0 %}
+            <form class="list_form" method="post" action="{% url 'delete_from_cart' cart.id %}">
+            {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.path }}">
+                <p class="simple_text">NAME: {{ instrument.name }}</p>
+                <p class="simple_text">PRICE: {{ instrument.price }}$</p>
+                <label class="simple_text" for="descr3">DESCRIPTION:</label>
+                <p class="description" id="descr3">{{ instrument.description }}</p>
+                <button class="small_button" type="submit">Delete</button>
+            </form>
+            {% endwith %}
+            {% endfor %}
+            <form class="form" method="post" action="{% url 'create_order' %}">
+            {% csrf_token %}
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ request.path }}">
-            <p>{{ instrument.name }}</p>
-            <textarea>{{ instrument.description }}</textarea>
-            <button type="submit">Delete</button>
-        </form>
-    </li>
-      {% endwith %}
-    {% endfor %}
-  </ul>
-    <form method="post" action="{% url 'create_order' %}">
-        {% csrf_token %}
-                    {% csrf_token %}
-
-        <input type="hidden" name="next" value="{{ request.path }}">
-        <button type="submit">Order</button>
-    </form>
+            <button class="button button-block" type="submit">Order</button>
+            </form>
+        </div>
+    </div>
 {% else %}
-<p>Cart is empty! </p>
+<p class="basic_header">Cart is empty! </p>
 {% endif %}
 {% endif%}
 
 {% if show == 2%}
 {% if orders %}
-<ul>
     {% for full_order in orders %}
-    <li>
-        <form method="post" action="{% url 'cancel_order' %}">
+    <div>
+        <form class="list_form" method="post" action="{% url 'cancel_order' %}">
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ request.path }}">
             <input type="hidden" name="order_id" value="{{ full_order.order.id }}">
-
             {% for instrument in full_order.instruments %}
                 <div>
-                    <p>{{ instrument.id_instrument.name }}</p>
-                    <p>{{ instrument.id_instrument.price }}</p>
-                    <textarea>{{ instrument.id_instrument.description }}</textarea>
+                    <h3 class="simple_text">NAME: {{ instrument.id_instrument.name }}</h3>
+                    <p class="simple_text">PRICE: {{ instrument.id_instrument.price }}$</p>
+                    <label class="simple_text" for="descr">DESCRIPTION:</label>
+                    <p class="description" id="descr">{{ instrument.id_instrument.description }}</p>
                 </div>
+                <div class="sep"></div>
                 {% endfor %}
-            <p>{{ full_order.order.date }}</p>
-            <button type="submit">Cancel</button>
+            <p class="simple_text">DATE: {{ full_order.order.date }}</p>
+            <button class="small_button" type="submit">CANCEL</button>
         </form>
-    </li>
+    </div>
     {% endfor %}
-</ul>
 {% else %}
-    <p> No active orders </p>
+    <p class="basic_header"> No active orders </p>
 {% endif%}
 {% endif %}
 
 {% if show == 3%}
 {% if canceled_orders %}
-<ul>
+<div>
     {% for full_order in canceled_orders %}
-    <li>
+    <div class="list_form">
         {% for instrument in full_order.instruments %}
         <div>
-            <p>{{ instrument.id_instrument.name }}</p>
-            <p>{{ instrument.id_instrument.price }}</p>
-            <textarea>{{ instrument.id_instrument.description }}</textarea>
+            <h3 class="simple_text">NAME: {{ instrument.id_instrument.name }}</h3>
+            <p class="simple_text">PRICE: {{ instrument.id_instrument.price }}$</p>
+            <label class="simple_text" for="descr2">DESCRIPTION:</label>
+            <p class="description" id="descr2">{{ instrument.id_instrument.description }}</p>
         </div>
+        <div class="sep"></div>
         {% endfor %}
-        <p>{{ full_order.order.date }}</p>
+            <p class="simple_text">DATE: {{ full_order.order.date }}</p>
         {% if full_order.order.is_canceled %}
-            <p>Canceled</p>
+            <p class="simple_text">Canceled</p>
         {% else %}
-            <p>Finished</p>
+            <p class="simple_text">Finished</p>
         {% endif %}
-    </li>
+    </div>
     {% endfor %}
-</ul>
 {% else %}
-    <p> No finished orders </p>
+    <p class="basic_header"> No finished orders </p>
+</div>
 {% endif %}
 {% endif %}
+</div>
+</div>
 {% endblock%}

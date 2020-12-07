@@ -1,27 +1,30 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
     {% block head %}
     {% endblock head%}
 </head>
 <body>
-    <p>Base template</p>
-    <div>
-        <ul>
-            {% if user.is_authenticated%}
-                <li> {{ user.get_username }} </li>
-                <li><a href="{% url 'profile' %}">PROFILE</a></li>
-                <li> <a href="{% url 'logout' %}?next={{ request.path }}">LOGOUT</a></li>
-            {% else %}
-                <li> <a href="{% url 'login' %}?next={{ request.path }}">LOGIN</a></li>
-            {% endif %}
-        </ul>
-    </div>
+<nav class="top-menu">
+    <ul class="menu-main">
+        {% if user.is_authenticated%}
+        <li> {{ user.get_username }} </li>
+        <li><a href="{% url 'profile' %}">PROFILE</a></li>
+        <li><a href="{% url 'logout' %}?next={{ request.path }}">LOGOUT</a></li>
+        {% elif user.is_authenticated %}
+        <li> <a href="{% url 'admin' %}">ADMIN</a></li>
+        {% else %}
+        <li> <a href="{% url 'login' %}?next={{ request.path }}">LOGIN</a></li>
+        {% endif %}
+        <li><a href="{% url 'catalog' %}">CATALOG</a></li>
+    </ul>
+</nav>
 {% block content %}
 {% endblock%}
 </body>
 <footer>
-
 </footer>
 </html>

@@ -5,12 +5,77 @@
 {% endblock head%}
 
 {% block content %}
+{% if show_types == True %}
+    {% for type in types %}
+    <form method="post" action="{% url 'catalog' %}">
+        {% csrf_token %}
+        <input type="hidden" name="show_types" value="False">
+        <input type="hidden" name="{{ type.inst_type }}" value="True">
+        <button type="submit">{{ type.inst_type }}</button>
+    </form>
+    {% endfor %}
+{% else %}
+    <p>CATALOG</p>
+    <p>{{ type.inst_type }}</p>
+    <form method="post" action="{% url 'catalog' %}">
+        {% csrf_token %}
+        <select name="countries_s">
+            {% if producer_country == 'select' %}
+                <option selected value="select">Select</option>
+            {% else %}
+                <option value="select">Select</option>
+            {% endif %}
+            {% for country in countries %}
+            {% if country == producer_country %}
+                <option selected value="{{ country }}">{{ country }}</option>
+            {% else %}
+                <option value="{{ country }}">{{ country }}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+        <select name="producers_s">
+            {% if producer == "select" %}
+                <option selected value="select">Select</option>
+            {% else %}
+                <option value="select">Select</option>
+            {% endif %}
+            {% for producer_ in producers %}
+            {% if producer_ == producer %}
+                <option selected value="{{ producer_ }}">{{ producer_ }}</option>
+            {% else %}
+                <option value="{{ producer_ }}">{{ producer_ }}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+        <select name="sort_by">
+            {% if sort_by == "select" %}
+                <option selected value="select">Select</option>
+            {% else %}
+                <option value="select">Select</option>
+            {% endif %}
+            {% for sort in sorts %}
+            {% if sort == sort_by %}
+                <option selected value="{{ sort }}">{{ sort }}</option>
+            {% else %}
+                <option value="{{ sort }}">{{ sort }}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+        <label for="ll">Set lowest limit for price</label>
+        <input type="range" id="ll" name="low_limit" min="{{ lowest_price }} max = {{ highest_price }}" value="{{ low_limit }}">
+        <label for="hl">Set highest limit for price</label>
+        <input type="range" id="hl" name="high_limit" min="{{ lowest_price }} max = {{ highest_price }}" value="{{ high_limit }}">
+        <input type="hidden" name="{{ type.inst_type }}" value="True">
+        <input type="hidden" name="show_types" value="False">
+        <input type="hidden" name="filter" value="True">
+        <button type="submit">Search</button>
+    </form>
+    {% if instruments_list %}
     {% for instrument in instruments_list%}
-        <p>CATALOG</p>
         <ul>
         <li>
             <a href="{% url 'instrument' instrument.id %}">{{ instrument.name }}</a>
-            {% if user is not None%}
+            {% if user.is_authenticated %}
             <form method="post" action="{% url 'to_cart' instrument.id user.id %}">
                 {% csrf_token %}
                 {{ form }}
@@ -21,4 +86,9 @@
         </li>
         </ul>
     {% endfor %}
+    {% else %}
+        <p>No instruments found </p>
+    {% endif %}
+<a href="{% url 'catalog' %}">Types</a>
+{% endif %}
 {% endblock%}
