@@ -18,9 +18,10 @@ from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path
 from django.conf.urls import include
+from django_email_verification import urls as mail_urls
 from storeApp.views import show_instrument, registration,  CreateOrder, DeleteFromCart, \
      profile, show_catalog, confirm_email, registration_submit, addToCart, \
-    CancelOrder, CreateOrder, SearchWithFilters, SearchByName, Search
+    CancelOrder, CreateOrder, SearchWithFilters, SearchByName, Search, edit_profile, TestCard
 
 from musicalStore import settings
 
@@ -28,6 +29,7 @@ urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('', show_catalog, name='catalog'),
     path('profile/', profile, name='profile'),
+    path('edit_profile/', edit_profile , name='edit_profile'),
     path('instrument/<int:instrument_id>', show_instrument, name='instrument'),
     path('catalog/', show_catalog, name='catalog'),
     path('search/', Search, name='search'),
@@ -40,8 +42,11 @@ urlpatterns = [
     path('delete_from_cart/<int:cart_id>', DeleteFromCart, name='delete_from_cart'),
     path('cancel_order/', CancelOrder, name='cancel_order'),
     path('create_order/', CreateOrder, name='create_order'),
+    path('confirm_by_email/<int:user_id>', confirm_email, name='confirm_by_email'),
+    path('test_card', TestCard, name='test_card'),
 ]
 
 urlpatterns += [path('accounts/', include('django.contrib.auth.urls')), ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += staticfiles_urlpatterns()
+urlpatterns += [path('email/', include(mail_urls))]

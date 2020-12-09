@@ -34,13 +34,29 @@ body {
 .list_form {
   background: #cd9fd1;
   border: 2px solid #5A394E;
-  padding: 40px;
+  padding: 20px;
   width: 85%;
-  margin:40px auto;
+  margin:5px auto;
   border-radius:4px;
   box-shadow:0 4px 10px 4px #5A394E;
 }
 
+.image{
+    height: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.small_icon{
+    border: 2px solid #aee5e8;
+    background-color: #ffffff;
+    padding: 5px;
+    content: center;
+    border-radius: 10px;
+    max-width: 300px;
+    height: 300px;
+}
 
 h1 {
   text-align:center;
@@ -331,6 +347,18 @@ input {
     grid-template-columns: 1fr 1fr;
     overflow-y: scroll;
 }
+
+.instrument_container{
+    width: 95%;
+    display: grid;
+    padding: 15px;
+    row-gap: 5px;
+    column-gap: 10px
+    grid-template-columns: 1fr;
+    gird-template-rows: 20fr 1fr;
+    overflow-y: scroll;
+}
+
 .list_box{
     width: fit-content;
     height: max-content;
@@ -478,12 +506,12 @@ input {
 .description{
   font-size: 15px;
   display:block;
-  width:100%;
-  height:100%;
+  width:50%;
   padding:5px 10px;
   border:1px solid #d04fdb;
   color: #382331;
   border-radius:5px;
+  overflow-y: scroll;
   transition:border-color .25s ease, box-shadow .25s ease;
   &:focus {
 		outline:0;

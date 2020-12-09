@@ -59,16 +59,19 @@ class DBController(object):
                                       confirmed=False)
         user_profile.save()
 
-    def EditUser(self, user_data, address_data):
-        user = User.objects.get(pk=user_data[self.UserKeys.ID])
+        return user
+
+    def EditUser(self, user_data, user_id):
+        user = User.objects.get(pk=user_id)
         user.username = user_data[self.UserKeys.USERNAME]
         user.first_name = user_data[self.UserKeys.FIRST_NAME]
         user.last_name = user_data[self.UserKeys.LAST_NAME]
         user.email = user_data[self.UserKeys.EMAIL]
-        user.password = user_data[self.UserKeys.PASSWORD]
 
         user_inf = UserConnection.objects.get(id_user=user.id)
         user_inf.phone = user_data[self.UserKeys.PHONE]
+
+        self.EditAddress(user_data, user_inf)
 
         user.save()
         user_inf.save()
@@ -86,12 +89,20 @@ class DBController(object):
         address.save()
         return address
 
-    def EditAddress(self, address_data, user_id):
-        user = User.objects.get(pk=user_id)
-        user_inf = UserConnection.objects.get(id_user=user.id)
-        address = Address.objects.get(pk=user_inf.id_address)
+    def EditAddress(self, address_data, user_inf):
+        address = user_inf.id_address
 
-    #     change data
+        address.country = address_data[self.UserKeys.COUNTRY]
+        address.city_type = Address.CityType.CIT
+        address.city = address_data[self.UserKeys.CITY]
+        address.street_type = Address.StreetType.STR
+        address.street = address_data[self.UserKeys.STREET]
+        address.house = address_data[self.UserKeys.HOUSE]
+        address.gate = address_data[self.UserKeys.GATE]
+        address.flat = address_data[self.UserKeys.FLAT]
+        address.index = address_data[self.UserKeys.INDEX]
+
+        address.save()
 
     def AddToCart(self, id_instrument, user_id):
 
@@ -110,11 +121,13 @@ class DBController(object):
         user = get_object_or_404(User, pk=user_id)
         instruments_con = Cart.objects.all().filter(id_user=user)
 
+        total_price = 0
         instruments_list = []
         for i in range(len(instruments_con)):
             instruments_list.append(instruments_con[i].id_instrument)
+            total_price += float(instruments_list[i].price)
 
-        return instruments_list, instruments_con
+        return instruments_list, instruments_con, total_price
 
     def GetOrders(self, user):
         orders = Order.objects.all().filter(id_user=user.id, is_active=True)
@@ -219,4 +232,13 @@ class DBController(object):
         instruments_min = instruments.order_by('-price')[0]
 
         return instruments_max.price, instruments_min.price
+
+    def GetUser(self, user_id):
+        return User.objects.get(pk=user_id)
+
+    def GetUserData(self, user_id,  user):
+
+        user_info = UserConnection.objects.get(id_user=user_id)
+        address = user_info.id_address
+        return user_info, address
 

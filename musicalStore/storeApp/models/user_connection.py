@@ -10,4 +10,4 @@ class UserConnection(models.Model):
     id_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     phone = models.CharField(max_length=20)
     confirmed = models.BooleanField(default=False)
-    id_address = models.ForeignKey(Address, on_delete=models.RESTRICT, db_column='id_address')
+    id_address = models.ForeignKey(Address, on_delete=models.CASCADE, db_column='id_address')

@@ -9,7 +9,7 @@ db = DBController()
 @login_required
 def profile(request):
 
-    user_cart, cart_info = db.GetUserCart(request.user.id)
+    user_cart, cart_info, total_price = db.GetUserCart(request.user.id)
     show = 1
     empty = False
     if len(user_cart) == 0:
@@ -40,6 +40,7 @@ def profile(request):
 
     return render(request, 'storeApp/profile.html', {
         'cart_info': cart_info,
+        'total_price': total_price,
         'user_cart': user_cart,
         'empty': empty,
         'canceled_orders': None,

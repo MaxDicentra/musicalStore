@@ -15,7 +15,7 @@ class Instrument(models.Model):
         db_table = 'instrument'
 
     name = models.CharField(max_length=45)
-    description = models.TextField(max_length=250)
+    description = models.TextField(max_length=550)
     price = models.IntegerField()
     image = models.ImageField(blank=True)
     id_type = models.ForeignKey(Type, on_delete=models.RESTRICT, db_column='id_type')

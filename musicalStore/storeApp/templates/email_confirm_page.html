@@ -1,10 +1,13 @@
-{% extends "base.html" %}
-
-{% block head %}
-<title> Email confirm </title>
-{% endblock head%}
-
-{% block content %}
-    <p>Confirm your email.</p>
-    <a href="{% url 'login' %}">LOGIN</a>
-{% endblock%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        h1{ color: blue; }
+    </style>
+</head>
+    <body>
+        <h1>Hello from MusicalStore! To confirm your email follow link bellow</h1><br>
+        <h2>Please click <a href="{{ link }}">here</a> to confirm your account</h2>
+    </body>
+</html>

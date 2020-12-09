@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmation</title>
+    <style>
+        body{ color: blue;
+          background: #8787a3;
+          font-family: 'Titillium Web', sans-serif;
+          font-size: 25px;
+          color: #382331;
+          text-shadow: 2px 2px 5px #0d5c54;
+          align: center
+        }
+    </style>
+</head>
+<body>
+    {% if success %}
+    <p class="basic_header_larger">You have confirmed your account!</p>
+    {% else %}
+    <p class="basic_header_larger"> Error, invalid token!</p>
+    {% endif %}
+</body>
+</html>

@@ -2,6 +2,7 @@
 
 {% block head %}
 <title> Catalog </title>
+
 {% endblock head%}
 
 {% block content %}
@@ -110,7 +111,9 @@
         <div>
             <div class="list_form">
             <a class="basic_header" href="{% url 'instrument' instrument.id %}">{{ instrument.name }}</a><br>
-                <img src="{{ instrument.image.url }}" height='30%' width="30%"/>
+                <div class="small_icon">
+                    <img class="image" src="{{ instrument.image.url }}"/>
+                </div>
                 <p class="simple_text">PRICE: {{ instrument.price }}$</p>
                 <p class="simple_text">{{ instrument.id_producer.name }}</p>
                 <label class="simple_text" for="descr3">DESCRIPTION:</label>

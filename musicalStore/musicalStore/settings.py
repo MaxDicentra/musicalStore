@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'storeApp',
     'django.contrib.admin',
+    'django_email_verification',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +73,18 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'musicalStore.wsgi.application'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_ACTIVE_FIELD = 'is_active'
+EMAIL_SERVER = 'smtp.gmail.com'
+EMAIL_PORT = 25
+EMAIL_ADDRESS = 'deizily90@gmail.com'
+EMAIL_FROM_ADDRESS = 'noreply@aliasaddress.com'
+EMAIL_PASSWORD = '909060joy'
+EMAIL_MAIL_SUBJECT = 'MusicalStore email confirmation.'
+EMAIL_MAIL_HTML = 'email_confirm_page.html'
+EMAIL_PAGE_TEMPLATE = 'confirm_email.html'
+EMAIL_PAGE_DOMAIN = 'http://127.0.0.1:8000/'
 
 
 # Database

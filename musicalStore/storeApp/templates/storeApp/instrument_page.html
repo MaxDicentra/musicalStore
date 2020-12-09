@@ -5,19 +5,28 @@
 {% endblock head%}
 
 {% block content %}
-<div class="list_form">
-    <h1>{{ instrument.name }}</h1><br>
-    <img src="{{ instrument.image.url }}" height='60%' width="60%"/>
-    <p class="simple_text">PRICE: {{ instrument.price }}$</p>
-    <label class="simple_text" for="descr3">DESCRIPTION:</label>
-    <p class="description" id="descr3">{{ instrument.description }}</p>
-    {% if user.is_authenticated %}
-    <form method="post" action="{% url 'to_cart' instrument.id user.id %}">
-        {% csrf_token %}
-        {{ form }}
-        <input type="hidden" name="next" value="{% url 'catalog' %}">
-        <button class="small_button" type="submit">To cart</button>
-    </form>
-    {% endif %}
-</div>
+ <div class="catalog_container_mod">
+    <div></div>
+    <div class="list_box_container" id="style-middle">
+        <div class="list_form">
+            <div><p class="basic_header_larger">{{ instrument.name }}</p></div>
+            <div class="small_icon">
+                <img class="image" src="{{ instrument.image.url }}"/>
+            </div>
+            <div>
+                <p class="simple_text">PRICE: {{ instrument.price }}$</p>
+                <label class="simple_text" for="desc">DESCRIPTION:</label><br>
+                <div class="simple_text" id="desc">{{ instrument.description }}</div><br>
+                    {% if user.is_authenticated %}
+                <form method="post" action="{% url 'to_cart' instrument.id user.id %}">
+                    {% csrf_token %}
+                    {{ form }}
+                    <input type="hidden" name="next" value="{% url 'catalog' %}">
+                    <button class="small_button" type="submit">To cart</button>
+                </form>
+            </div>
+            {% endif %}
+        </div><br><br><br>
+    </div>
+ </div>
 {% endblock%}

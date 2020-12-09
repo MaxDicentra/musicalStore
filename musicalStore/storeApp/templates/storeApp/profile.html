@@ -23,12 +23,17 @@
         <input type="hidden" name="show_cart" value="True">
         <button class="profile_bar_button"  type="submit">My cart</button>
     </form>
+    <form method="post" action="{% url 'edit_profile' %}">
+        {% csrf_token %}
+        <button class="profile_bar_button"  type="submit">Edit profile</button>
+    </form>
 </div>
 <div class="list_box_container" id="style-middle">
 {% if show == 1 %}
 {% if empty is not True %}
     <div>
         <h1 class="basic_header">My cart</h1>
+        <p class="basic_header_larger">Total price: {{ total_price }}$</p>
         <div class="cart">
             {% for instrument in user_cart %}
             {% with cart=cart_info|get_element:forloop.counter0 %}
@@ -36,7 +41,9 @@
             {% csrf_token %}
                 <input type="hidden" name="next" value="{{ request.path }}">
                 <p class="simple_text">NAME: {{ instrument.name }}</p><br>
-                <img src="{{ instrument.image.url }}" height='40%' width="40%"/>
+                <div class="small_icon">
+                <img class="image" src="{{ instrument.image.url }}"/>
+                </div>
                 <p class="simple_text">PRICE: {{ instrument.price }}$</p>
                 <label class="simple_text" for="descr3">DESCRIPTION:</label>
                 <p class="description" id="descr3">{{ instrument.description }}</p>
@@ -44,7 +51,7 @@
             </form>
             {% endwith %}
             {% endfor %}
-            <form class="form" method="post" action="{% url 'create_order' %}">
+            <form class="form" method="post" action="{% url 'test_card' %}">
             {% csrf_token %}
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ request.path }}">
@@ -66,15 +73,17 @@
             <input type="hidden" name="next" value="{{ request.path }}">
             <input type="hidden" name="order_id" value="{{ full_order.order.id }}">
             {% for instrument in full_order.instruments %}
-                <div>
-                    <h3 class="simple_text">NAME: {{ instrument.id_instrument.name }}</h3><br>
-                    <img src="{{ instrument.id_instrument.image.url }}" height='40%' width="40%"/>
-                    <p class="simple_text">PRICE: {{ instrument.id_instrument.price }}$</p>
-                    <label class="simple_text" for="descr">DESCRIPTION:</label>
-                    <p class="description" id="descr">{{ instrument.id_instrument.description }}</p>
+            <div>
+                <h3 class="simple_text">NAME: {{ instrument.id_instrument.name }}</h3><br>
+                <div class="small_icon">
+                    <img class="image" src="{{ instrument.id_instrument.image.url }}"/>
                 </div>
-                <div class="sep"></div>
-                {% endfor %}
+                <p class="simple_text">PRICE: {{ instrument.id_instrument.price }}$</p>
+                <label class="simple_text" for="descr">DESCRIPTION:</label>
+                <p class="description" id="descr">{{ instrument.id_instrument.description }}</p>
+            </div>
+            <div class="sep"></div>
+            {% endfor %}
             <p class="simple_text">DATE: {{ full_order.order.date }}</p>
             <button class="small_button" type="submit">CANCEL</button>
         </form><br><br>
@@ -93,7 +102,9 @@
         {% for instrument in full_order.instruments %}
         <div>
             <h3 class="simple_text">NAME: {{ instrument.id_instrument.name }}</h3><br>
-            <img src="{{ instrument.id_instrument.image.url }}" height='40%' width="40%"/>
+            <div class="small_icon">
+                <img class="image" src="{{ instrument.id_instrument.image.url }}"/>
+            </div>
             <p class="simple_text">PRICE: {{ instrument.id_instrument.price }}$</p>
             <label class="simple_text" for="descr2">DESCRIPTION:</label>
             <p class="description" id="descr2">{{ instrument.id_instrument.description }}</p>

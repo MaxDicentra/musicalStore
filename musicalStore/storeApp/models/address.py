@@ -16,12 +16,12 @@ class Address(models.Model):
     class Meta:
         db_table = 'address'
 
-    country = models.CharField(max_length=45)
-    city_type = models.CharField(max_length=10, choices=CityType.choices)
-    city = models.CharField(max_length=45)
-    street_type = models.CharField(max_length=10, choices=StreetType.choices)
-    street = models.CharField(max_length=45)
-    house = models.CharField(max_length=10)
-    gate = models.CharField(max_length=5)
-    flat = models.CharField(max_length=10)
-    index = models.CharField(max_length=10)
+    country = models.CharField(max_length=45, blank=True)
+    city_type = models.CharField(max_length=10, choices=CityType.choices,blank=True)
+    city = models.CharField(max_length=45, blank=True)
+    street_type = models.CharField(max_length=10, choices=StreetType.choices, blank=True)
+    street = models.CharField(max_length=45, blank=True)
+    house = models.CharField(max_length=10, blank=True)
+    gate = models.CharField(max_length=5, blank=True)
+    flat = models.CharField(max_length=10, blank=True)
+    index = models.CharField(max_length=10, blank=True)

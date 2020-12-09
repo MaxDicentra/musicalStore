@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title> Edit </title>
+{% endblock head%}
+
+{% block content %}
+{% if error_message %}
+    <p class="error_message"> {{ error_message }} </p>
+{% endif %}
+<div class="container">
+        <div><br><h1>Edit Profile</h1></div>
+        <div class="list_container" id="style-middle">
+        <form class="form" action="{% url 'edit_profile' %}" method="post" name="registration_form">
+                {% csrf_token %}
+                <h1>User info:</h1>
+                <input class="input_reg" type="text" name="{{keys.USERNAME}}" required size="45" placeholder="Login" value="{{ user.username}}"><br>
+                <input class="input_reg" type="text" name="{{keys.FIRST_NAME}}" required size="45" placeholder="First name" value="{{ user.first_name}}" ><br>
+                <input class="input_reg" type="text" name="{{keys.LAST_NAME}}" required size="45" placeholder="Last name" value="{{ user.last_name }}"><br>
+                <input class="input_reg" type="text" name="{{keys.PHONE}}" required size="20" placeholder="Phone" value="{{ user_info.phone }}" ><br>
+                <input class="input_reg" type="text" name="{{keys.EMAIL}}" placeholder="E-mail" required size="30" value="{{ user.email }}"><br>
+                <h1>Address:</h1>
+                <input class="input_reg" type="text" name="{{keys.COUNTRY}}" required size="45" placeholder="Country" value="{{ address.country }}" ><br>
+                <input class="input_reg" type="text" name="{{keys.CITY}}" required size="45" placeholder="City" value="{{ address.city }}" ><br>
+                <input class="input_reg" type="text" name="{{keys.STREET}}" required size="45" placeholder="Street" value="{{ address.city }}" ><br>
+                <input class="input_reg" type="text" name="{{keys.HOUSE}}" required size="10" placeholder="House" value="{{ address.house }}" ><br>
+                <input class="input_reg" type="text" name="{{keys.GATE}}" placeholder="Gate" required size="5" value="{{ address.gate }}" ><br>
+                <input class="input_reg" type="text" name="{{keys.FLAT}}" placeholder="Flat" required size="10" value="{{ address.flat }}" ><br>
+                <input class="input_reg" type="text" name="{{keys.INDEX}}" placeholder="Index" required size="10" value="{{ address.index }}" ><br>
+                <br>
+                <p class="forgot"><a class="a_style" href="{% url 'password_reset' %}">Change password</a></p>
+                <input type="hidden" name="confirm" value="True">
+            <p><input class="button button-block" type="submit" value="Confirm"></p>
+                <br><br>
+        </form>
+</div>
+</div>
+{% endblock%}

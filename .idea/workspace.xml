@@ -20,19 +20,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7d6fdc3-f3c8-4c3c-9967-e9825f6690ce" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/musicalStore/storeApp/templates/card_conf.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/musicalStore/storeApp/templates/confirm_email.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/musicalStore/storeApp/templates/storeApp/edit_profile.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/musicalStore/storeApp/views/edit_profile.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contrib.txt" beforeDir="false" afterPath="$PROJECT_DIR$/contrib.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/musicalStore/musicalStore/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/musicalStore/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/musicalStore/musicalStore/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/musicalStore/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/Controllers/DBController.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/Controllers/DBController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/models/address.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/models/address.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/models/instrument.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/models/instrument.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/models/user_connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/models/user_connection.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/static/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/static/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/templates/email_confirm_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/templates/email_confirm_page.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/templates/registration/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/templates/registration/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/templates/storeApp/registration.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/templates/registration/password_reset_complete.html" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/templates/registration/password_reset_complete.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/templates/registration/password_reset_confirm.html" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/templates/registration/password_reset_confirm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/templates/registration/password_reset_done.html" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/templates/registration/password_reset_done.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/templates/storeApp/catalog.html" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/templates/storeApp/catalog.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/templates/storeApp/instrument_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/templates/storeApp/instrument_page.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/templates/storeApp/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/templates/storeApp/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/views/catalog.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/views/catalog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/templates/storeApp/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/templates/storeApp/registration.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/views/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/views/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/views/order.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/views/order.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/views/profile.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/views/profile.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/musicalStore/storeApp/views/registration.py" beforeDir="false" afterPath="$PROJECT_DIR$/musicalStore/storeApp/views/registration.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,8 +55,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -67,11 +79,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\university\4_course\course_work\course_work\musicalStore\musicalStore\storeApp\templates" />
+      <recent name="D:\university\4_course\course_work\course_work\musicalStore\musicalStore\storeApp\templates\registration" />
       <recent name="D:\university\4_course\course_work\course_work\musicalStore\musicalStore\storeApp\templates\storeApp" />
       <recent name="D:\university\4_course\course_work\course_work\musicalStore\musicalStore\storeApp" />
       <recent name="D:\university\4_course\course_work\course_work\musicalStore\musicalStore\musicalStore\static" />
-      <recent name="D:\university\4_course\course_work\course_work\musicalStore\musicalStore\musicalStorePr\static" />
-      <recent name="D:\university\4_course\course_work\course_work\musicalStore\musicalStore\storeApp\templates\templatetags" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -102,10 +114,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="101" y="169" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1606684139563" />
-    <state x="128" y="118" key="FileChooserDialogImpl" timestamp="1607302320691">
+    <state x="128" y="118" key="FileChooserDialogImpl" timestamp="1607414083866">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="128" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1607302320691" />
+    <state x="128" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1607414083866" />
     <state x="-17" y="97" width="700" height="530" key="recent.locations.popup" timestamp="1607305657829">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
